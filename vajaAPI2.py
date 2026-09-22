@@ -9,9 +9,7 @@ kt = requests.get(urlTravia).json()
 for i in kt["results"]:
     print(i["question"])
     print()
-    odgovori = {i["correct_answer"]: "t", i["incorrect_answers"][0] : "f", i["incorrect_answers"][1] : "f", i["incorrect_answers"][2] : "f"}
-    vrstniRed = ""
+    pari = [(i["correct_answer"], "t")] + [(ans, "f") for ans in i["incorrect_answers"]]
+    odgovori = dict(r.sample(pari, len(pari)))
+    print("Možni odgovori:")
 
-
-
-# shuffle za slovarje:  promesan_slovar = dict(random.sample(list(moj_slovar.items()), len(moj_slovar)))
